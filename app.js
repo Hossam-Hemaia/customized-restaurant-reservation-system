@@ -19,10 +19,8 @@ const clientRouter = require("./routes/client");
 const errorController = require("./controllers/error");
 
 const app = express();
-//production database links
-//mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.w7t0w.mongodb.net/${process.env.MONGO_DATABASE}
-//mongodb+srv://easydiet2022:easydiet2022@cluster0.w7t0w.mongodb.net/easyDiet
-const MONGODB_Uri = `mongodb+srv://h23121980:h23121980@cluster0.k7ohi.mongodb.net/test`;
+
+const MONGODB_Uri = `mongodb+srv://its a secret`;
 const store = new MongoDBStore({
   uri: MONGODB_Uri,
   collection: "sessions",
