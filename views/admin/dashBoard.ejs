@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <%-include ('../includes/head.ejs')%>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/dashbody.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <section class="DD_main_container">
+      <!-- options part -->
+      <div class="DD_options_container">
+        <div class="DD_menu_overlay"></div>
+        <div class="DD_toggle_menu">
+          <img src="/img/icon/setting.svg" alt="setting" />
+        </div>
+        <div class="DD_sticky">
+          <div class="DD_options">
+            <!-- profile card -->
+            <a href="#">
+              <div class="DD_option_card">
+                <div class="DD_option_card_img">
+                  <img src="/img/icon/profile.svg" alt="userphoto" />
+                </div>
+                <div class="DD_option_card_text">
+                  <h4>Admin</h4>
+                </div>
+              </div>
+            </a>
+            <a href="/admin/add/subscriper">
+              <div class="DD_option_card">
+                <div class="DD_option_card_img">
+                  <img src="/img/icon/plus.svg" alt="userphoto" />
+                </div>
+                <div class="DD_option_card_text">
+                  <h4>اضافة مشترك جديد</h4>
+                </div>
+              </div>
+            </a>
+            <!-- add design card -->
+            <a href="/clients/search">
+              <div class="DD_option_card">
+                <div class="DD_option_card_img">
+                  <img src="/img/icon/search.png" alt="بحث" />
+                </div>
+                <div class="DD_option_card_text">
+                  <h4>بحث عن مشترك</h4>
+                </div>
+              </div>
+            </a>
+            <a href="/clients/remove">
+              <div class="DD_option_card">
+                <div class="DD_option_card_img">
+                  <img src="/img/icon/remove.svg" alt="بحث" />
+                </div>
+                <div class="DD_option_card_text">
+                  <h4>حذف مشترك</h4>
+                </div>
+              </div>
+            </a>
+            <!-- earnings card -->
+            <a href="/allClients/report" id="getAllClients">
+              <div class="DD_option_card">
+                <div class="DD_option_card_img">
+                  <img src="/img/icon/report.png" alt="userphoto" />
+                </div>
+                <div class="DD_option_card_text">
+                  <h4>تفاصيل الاشتراكات</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- end options part -->
+        </div>
+      </div>
+      <!-- designs part -->
+      <div class="tbl_container">
+        <% if (requests.length > 0) { %>
+        <table>
+          <tr>
+            <th>مسلسل</th>
+            <th>اسم العميل</th>
+            <th>رقم التليفون</th>
+            <th>تاريخ الطلب</th>
+          </tr>
+          <% let idx = 1; %> <% for(let request of requests){ %> <% let dateStr
+          = `${request.date}`;%> <% let shortDate = dateStr.substr(0,
+          dateStr.indexOf('GMT')); %>
+          <tr>
+            <td><%= idx %></td>
+            <td>
+              <a href="/process/client/request/<%= request._id %>"
+                ><%= request.name %></a
+              >
+            </td>
+            <td><%= request.phoneNumber %></td>
+            <td><%= shortDate %></td>
+          </tr>
+          <% idx++; %> <%}%>
+        </table>
+        <%} else {%>
+        <h2>لا يوجد طلبات</h2>
+        <%}%>
+      </div>
+      <input type="hidden" name="admin" value="admin" />
+    </section>
+    <script src="/js/dashboard.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/requestNotifications.js"></script>
+    <%-include ('../includes/end.ejs')%>
+  </body>
+</html>

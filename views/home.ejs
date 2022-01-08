@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <%-include('includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/register.css" />
+    <title>Easy Diet</title>
+  </head>
+  <body>
+    <%-include('includes/nav.ejs')%>
+    <section class="welcom-message">
+      <div class="home-message_container">
+        <h1>مرحبا بك مع إيزى دايت</h1>
+        <p class="message_body">
+          لتتمكن من الاستفاده من برامجنا الغذائيه الصحيه يرجى ملء النموذج التالى
+          بكل دقه
+        </p>
+      </div>
+    </section>
+    <div class="form_container">
+      <%if (hasError){%>
+      <div class="error_container">
+        <p><%=errorMessage%></p>
+      </div>
+      <%}%>
+      <form action="/register" method="POST">
+        <div class="client_basic_info">
+          <label class="basic_label">الإسم</label>
+          <input
+            type="text"
+            name="name"
+            class="basic_input"
+            value="<%=hasError?oldInputs.name:''%>"
+            required
+          />
+          <label class="basic_label">رقم التليفون</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            class="basic_input"
+            min="7"
+            max="11"
+            value="<%=hasError?oldInputs.phoneNumber:''%>"
+            required
+          />
+          <label class="basic_label">العنوان</label>
+          <input
+            type="text"
+            name="address"
+            class="basic_input"
+            min="7"
+            max="11"
+            value="<%=hasError?oldInputs.address:''%>"
+            required
+          />
+          <label class="basic_label">الوزن الحالى</label>
+          <input
+            type="number"
+            name="initialWeight"
+            class="basic_input"
+            value="<%=hasError?oldInputs.initialWeight:''%>"
+            required
+          />
+          <label class="basic_label">الطول</label>
+          <input
+            type="number"
+            name="height"
+            class="basic_input"
+            value="<%=hasError?oldInputs.height:''%>"
+            required
+          />
+          <label class="basic_label">العمر</label>
+          <input
+            type="number"
+            name="age"
+            class="basic_input"
+            value="<%=hasError?oldInputs.age:''%>"
+            required
+          />
+        </div>
+        <div class="client_basic_info">
+          <label>الهدف المراد الوصول اليه</label>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="فقدان الدهون"
+              id="loseFats"
+            />
+            <label for="loseFats">فقدان الدهون</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="زيادة العضل"
+              id="muscels"
+            />
+            <label for="muscels">زيادة العضل</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="زيادة الاداء الرياضى"
+              id="performance"
+            />
+            <label for="performance">زيادة الاداء الرياضى</label>
+          </div>
+          <div>
+            <input type="radio" name="target" value="اهداف اخرى" id="other" />
+            <label for="other">اهداف اخرى</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">نوع النشاط الذى تمارسه</label>
+          <input
+            type="text"
+            name="activity"
+            class="basic_input"
+            value="<%=hasError?oldInputs.activity:''%>"
+          />
+          <label class="basic_label">عدد ايام التدريب</label>
+          <select name="activityDays" class="basic_input">
+            <option value=""></option>
+            <option value="1">يوم واحد</option>
+            <option value="2">يومان بالاسبوع</option>
+            <option value="3">ثلاث ايام بالاسبوع</option>
+            <option value="4">اربعة ايام بالاسبوع</option>
+            <option value="5">خمسة ايام بالاسبوع</option>
+            <option value="6">ستة ايام بالاسبوع</option>
+            <option value="7">يوميا</option>
+          </select>
+          <label class="basic_label">مدة التدريب(بالساعه)</label>
+          <input
+            type="number"
+            name="trainingPeriod"
+            class="basic_input"
+            value="<%=hasError?oldInputs.trainingPeriod:''%>"
+          />
+          <label class="basic_label">شدة التدريب</label>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="عالى الشده"
+              id="hardTraining"
+            />
+            <label for="hardTraining">تدريب عالى الشده</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="متوسط الشده"
+              id="balancedTraining"
+            />
+            <label for="balancedTraining">تدريب متوسط الشده</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="منخفض الشده"
+              id="mildTraining"
+            />
+            <label for="mildTraining">تدريب منخفض الشده</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label"
+            >هل تواجه اى مشاكل صحيه (اذكرها ان وجدت)</label
+          >
+          <input
+            type="text"
+            name="healthIssues"
+            class="basic_input"
+            value="<%=hasError?oldInputs.healthIssues:''%>"
+          />
+          <label class="basic_label">هل لديك اى حساسيه من اطعمه معينه</label>
+          <div>
+            <input type="radio" name="foodAllergic" value="نعم" id="yes" />
+            <label for="yes">نعم</label>
+          </div>
+          <div>
+            <input type="radio" name="foodAllergic" value="لا" id="no" />
+            <label for="no">لا</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">ما هى اصناف الطعام التى تفضلها</label>
+          <textarea name="favoriteDish">
+<%=hasError?oldInputs.favoriteDish:''%></textarea
+          >
+          <label class="basic_label">ما هى اصناف الطعام التى لا تفضلها</label>
+          <textarea name="notFavoriteDish">
+<%=hasError?oldInputs.notFavoriteDis:''%></textarea
+          >
+          <label class="basic_label">سناكات لا تستغنى عنها (ان وجدت)</label>
+          <input
+            type="text"
+            name="snacks"
+            class="basic_input"
+            value="<%=hasError?oldInputs.snacks:''%>"
+          />
+          <label class="basic_label">المكملات التى تستخدما (ان وجدت)</label>
+          <input
+            type="text"
+            name="nutritions"
+            class="basic_input"
+            value="<%=hasError?oldInputs.nutritions:''%>"
+          />
+          <label class="basic_label"
+            >اذكر الطعام الذى تتناوله يوميا (افطار وغداء وعشاء)</label
+          >
+          <textarea name="meals"><%=hasError?oldInputs.meals:''%></textarea>
+          <label class="basic_label">اذكر السناكات التى تتناولها يوميا</label>
+          <input
+            type="text"
+            name="dailySnacks"
+            class="basic_input"
+            value="<%=hasError?oldInputs.dailySnacks:''%>"
+          />
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">ملاحظات اخرى</label>
+          <textarea name="notices"><%=hasError?oldInputs.notices:''%></textarea>
+        </div>
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <button type="submit" class="form_btn">حفظ وارسال النموذج</button>
+      </form>
+    </div>
+    <%-include('includes/end.ejs')%>
+  </body>
+</html>

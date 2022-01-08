@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="Ar" dir="rtl">
+  <head>
+    <%-include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/earnings.css" />
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <main class="container">
+      <div class="typo">
+        <h1 class="typo__heading">تقرير المشتركين</h1>
+      </div>
+      <section>
+        <div class="date">
+          <div class="date__inputs">
+            <label for="dateFrom">التاريخ من:</label>
+            <input type="date" name="dateFrom" required />
+            <label for="dateTo">التاريخ الى:</label>
+            <input type="date" name="dateTo" required />
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+          </div>
+          <div class="date__btns">
+            <button type="button" id="slrErnRprt">اظهر التقرير</button>
+            <button type="button" class="rprtDownload">تحميل الملف</button>
+          </div>
+        </div>
+      </section>
+      <table id="subscripersTbl">
+        <tr>
+          <th>مسلسل</th>
+          <th>اسم المشترك</th>
+          <th>رقم التليفون</th>
+          <th>رقم العضويه</th>
+          <th>مدة الاشتراك</th>
+          <th>تاريخ بداية الاشتراك</th>
+          <th>تاريخ نهاية الاشتراك</th>
+          <th>المده المتبقيه</th>
+          <th>عدد الوجبات</th>
+          <th>عدد الاسناكات</th>
+          <th>ملاحظات</th>
+          <th>سعر الاشتراك</th>
+          <th>الاجرائات</th>
+        </tr>
+        <%if (subscripers){ %> <% for (let sub of subscripers){ %>
+        <tr class="subTr">
+          <td><%=sub.clientSerial%></td>
+          <td><%=sub.clientName%></td>
+          <td><%=sub.clientNumber%></td>
+          <td><%=sub.subscriperId%></td>
+          <td><%=sub.subscriptionPeriod%></td>
+          <td><%=sub.startDate%></td>
+          <td><%=sub.endDate%></td>
+          <td class="rmDays"><%=sub.remainingPeriod%></td>
+          <td><%=sub.numberOfMeals%></td>
+          <td><%=sub.numberOfSnacks%></td>
+          <td><%=sub.notices%></td>
+          <td><%=sub.subscriptionPrice%></td>
+          <td>
+            <div class="action-container">
+              <button class="edtBtn action-btn">
+                <img src="/img/icon/edit.svg" class="action_icon" />
+              </button>
+              <button class="dltBtn action-btn">
+                <img src="/img/icon/remove.svg" class="action_icon" />
+              </button>
+            </div>
+          </td>
+          <input type="hidden" name="clientId" value="<%=sub.clientId%>" />
+        </tr>
+        <%}%><%}%>
+      </table>
+    </main>
+    <%-include('../includes/end.ejs')%>
+    <script src="/js/designActions.js"></script>
+    <script id="oldScr" src="/js/actionBtns.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+.tbl_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+table {
+  width: 90%;
+}
+
+table tr,
+table th,
+table td {
+  border: 1px solid #820075;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 34.375em) {
+  table {
+    width: 70%;
+  }
+  table tr,
+  table th,
+  table td {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 26.25em) {
+  table {
+    width: 70%;
+  }
+  table tr,
+  table th,
+  table td {
+    font-size: 1rem;
+  }
+}

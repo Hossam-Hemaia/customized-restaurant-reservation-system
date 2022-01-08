@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <%-include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/register.css" />
+    <title>HealthyFood</title>
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <h1>اضافة مشترك جديد</h1>
+
+    <div class="form_container">
+      <%if (hasError){%>
+      <div class="error_container">
+        <p><%=errorMessage%></p>
+      </div>
+      <%}%>
+      <form action="/add/new/subscriper" method="POST">
+        <div class="client_basic_info">
+          <label class="basic_label">الإسم</label>
+          <input type="text" name="name" class="basic_input" />
+          <label class="basic_label">رقم التليفون</label>
+          <input type="text" name="phoneNumber" class="basic_input" />
+          <label class="basic_label">رقم العضويه</label>
+          <input type="text" name="subscriperId" class="basic_input" />
+          <label class="basic_label">العنوان</label>
+          <input type="text" name="address" class="basic_input" />
+          <label class="basic_label">الوزن الحالى</label>
+          <input type="number" name="initialWeight" class="basic_input" />
+          <label class="basic_label">الطول</label>
+          <input type="number" name="height" class="basic_input" />
+          <label class="basic_label">العمر</label>
+          <input type="number" name="age" class="basic_input" />
+        </div>
+        <div class="client_basic_info">
+          <label>الهدف المراد الوصول اليه</label>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="فقدان الدهون"
+              id="loseFats"
+            />
+            <label for="loseFats">فقدان الدهون</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="زيادة العضل"
+              id="muscels"
+            />
+            <label for="muscels">زيادة العضل</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="target"
+              value="زيادة الاداء الرياضى"
+              id="performance"
+            />
+            <label for="performance">زيادة الاداء الرياضى</label>
+          </div>
+          <div>
+            <input type="radio" name="target" value="اهداف اخرى" id="other" />
+            <label for="other">اهداف اخرى</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">نوع النشاط الذى تمارسه</label>
+          <input type="text" name="activity" class="basic_input" />
+          <label class="basic_label">عدد ايام التدريب</label>
+          <select name="activityDays" class="basic_input">
+            <option value="1">يوم واحد</option>
+            <option value="2">يومان بالاسبوع</option>
+            <option value="3">ثلاث ايام بالاسبوع</option>
+            <option value="4">اربعة ايام بالاسبوع</option>
+            <option value="5">خمسة ايام بالاسبوع</option>
+            <option value="6">ستة ايام بالاسبوع</option>
+            <option value="7">يوميا</option>
+          </select>
+          <label class="basic_label">مدة التدريب(بالساعه)</label>
+          <input type="number" name="trainingPeriod" class="basic_input" />
+          <label class="basic_label">شدة التدريب</label>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="عالى الشده"
+              id="hardTraining"
+            />
+            <label for="hardTraining">تدريب عالى الشده</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="متوسط الشده"
+              id="balancedTraining"
+            />
+            <label for="balancedTraining">تدريب متوسط الشده</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="trainingIntensity"
+              value="منخفض الشده"
+              id="mildTraining"
+            />
+            <label for="mildTraining">تدريب منخفض الشده</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label"
+            >هل تواجه اى مشاكل صحيه (اذكرها ان وجدت)</label
+          >
+          <input type="text" name="healthIssues" class="basic_input" />
+          <label class="basic_label">هل لديك اى حساسيه من اطعمه معينه</label>
+          <div>
+            <input type="radio" name="foodAllergic" value="نعم" id="yes" />
+            <label for="yes">نعم</label>
+          </div>
+          <div>
+            <input type="radio" name="foodAllergic" value="لا" id="no" />
+            <label for="no">لا</label>
+          </div>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">ما هى اصناف الطعام التى تفضلها</label>
+          <textarea name="favoriteDish"></textarea>
+          <label class="basic_label">ما هى اصناف الطعام التى لا تفضلها</label>
+          <textarea name="notFavoriteDish"></textarea>
+          <label class="basic_label">سناكات لا تستغنى عنها (ان وجدت)</label>
+          <input type="text" name="snacks" class="basic_input" />
+          <label class="basic_label">المكملات التى تستخدما (ان وجدت)</label>
+          <input type="text" name="nutritions" class="basic_input" />
+          <label class="basic_label"
+            >اذكر الطعام الذى تتناوله يوميا (افطار وغداء وعشاء)</label
+          >
+          <textarea name="meals"></textarea>
+          <label class="basic_label">اذكر السناكات التى تتناولها يوميا</label>
+          <input type="text" name="dailySnacks" class="basic_input" />
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">ملاحظات اخرى</label>
+          <textarea name="notices"></textarea>
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">تاريخ بداية الاشتراك</label>
+          <input type="date" name="startDate" class="basic_input" />
+          <label class="basic_label">تاريخ نهاية الاشتراك</label>
+          <input type="date" name="endDate" class="basic_input" />
+          <div class="fridays_count">
+            <label class="basic_label">عدم احتساب ايام الجمعه</label>
+            <input type="checkbox" name="fridaysCount" id="friCount" />
+          </div>
+          <label class="basic_label">مدة الاشتراك(بالايام)</label>
+          <input type="number" name="subscriptionPeriod" class="basic_input" />
+          <label class="basic_label">عدد الوجبات</label>
+          <input type="number" name="numberOfMeals" class="basic_input" />
+          <label class="basic_label">عدد الاسناكات</label>
+          <input type="number" name="numberOfSnacks" class="basic_input" />
+          <label class="basic_label">كربوهيدرات</label>
+          <input type="text" name="carbohydrates" class="basic_input" />
+          <label class="basic_label">البروتين</label>
+          <input type="text" name="protine" class="basic_input" />
+          <label class="basic_label">ملاحظات</label>
+          <input type="text" name="notes" class="basic_input" />
+          <label class="basic_label">سعر الاشتراك</label>
+          <input type="number" name="subscriptionPrice" class="basic_input" />
+        </div>
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <button type="submit" class="form_btn">اضافة مشترك جديد</button>
+      </form>
+    </div>
+    <script src="/js/designActions.js"></script>
+    <%-include('../includes/end.ejs')%>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <%-include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/register.css" />
+    <title>HealthyFood</title>
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <h1>حذف مشترك</h1>
+    <div>
+      <form method="POST" action="/search/subscriper/info" class="search_box">
+        <label>رقم التليفون</label>
+        <input type="text" name="phoneNumber" />
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <button type="submit">بحث</button>
+      </form>
+    </div>
+    <div class="form_container">
+      <form action="/admin/remove/subscriper" method="POST">
+        <div class="client_basic_info">
+          <label class="basic_label">الإسم</label>
+          <input
+            type="text"
+            name="name"
+            class="basic_input"
+            value="<%=searching?clientData.name:''%>"
+          />
+          <label class="basic_label">رقم التليفون</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            class="basic_input"
+            value="<%=searching?clientData.phoneNumber:''%>"
+          />
+        </div>
+        <div class="client_basic_info">
+          <label class="basic_label">مدة الاشتراك(بالايام)</label>
+          <input
+            type="number"
+            name="subscriptionPeriod"
+            class="basic_input"
+            value="<%=searching?sub.subscriptionPeriod:''%>"
+          />
+          <label class="basic_label"
+            >تاريخ بداية الاشتراك : <%=searching?sub.startDate:''%></label
+          >
+          <input
+            type="date"
+            name="startDate"
+            class="basic_input"
+            value="<%=searching?sub.startDate:''%>"
+          />
+          <label class="basic_label"
+            >تاريخ نهاية الاشتراك : <%=searching?sub.endDate:''%></label
+          >
+          <input
+            type="date"
+            name="endDate"
+            class="basic_input"
+            value="<%=searching?sub.endDate:''%>"
+          />
+          <label class="basic_label">سعر الاشتراك</label>
+          <input
+            type="number"
+            name="subscriptionPrice"
+            class="basic_input"
+            value="<%=searching?sub.subscriptionPrice:''%>"
+          />
+        </div>
+        <input
+          type="hidden"
+          name="clientId"
+          value="<%=searching?clientData._id:''%>"
+        />
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <button type="submit" class="form_btn">حذف المشترك</button>
+      </form>
+    </div>
+    <%-include('../includes/end.ejs')%>
+  </body>
+</html>

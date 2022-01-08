@@ -1,0 +1,42 @@
+<nav class="DNAV" dir="rtl">
+  <div class="DNAV_overflow">
+    <div class="DNAV_FLEX_MOBILE">
+      <!-- logo -->
+      <div class="DNAV_logo">
+        <img class="home-logo" src="/img/easyDiet.png" alt="الرئيسيه" />
+      </div>
+      <!-- toggle icon -->
+      <div class="navbar__toggle" id="navbar-toggle">
+        <span class="line-1"></span>
+        <span class="line-2"></span>
+        <span class="line-3"></span>
+      </div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <div class="DNAV_content" id="DNAV_content">
+      <!-- left -->
+      <ul class="DNAV_left">
+        <li class="logo-li">
+          <a href="/"
+            ><img class="home-logo" src="/img/easyDiet.png" alt="الرئيسيه"
+          /></a>
+        </li>
+        <li>
+          <a href="/">الرئيسيه</a>
+        </li>
+      </ul>
+      <!-- right -->
+      <ul class="DNAV_right">
+        <%if(adminAuthenticated){%>
+        <li><a href="/admin/dashBoard">لوحة التحكم</a></li>
+        <li class="DNAV-red"><a href="/logout">الخروج</a></li>
+        <%}else{%>
+        <li><a href="/login">الدخول</a></li>
+        <%}%>
+      </ul>
+    </div>
+  </div>
+</nav>

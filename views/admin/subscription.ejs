@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <%-include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/register.css" />
+    <title>تسجيل اشتراك</title>
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <section>
+      <div>
+        <%if (hasError){%>
+        <div class="error_container">
+          <p><%=errorMessage%></p>
+        </div>
+        <%}%>
+        <form action="/client/subscription" method="POST">
+          <div class="client_basic_info">
+            <label class="basic_label">الإسم</label>
+            <input
+              type="text"
+              name="name"
+              value="<%=hasError?oldInputs.clientData.name:clientData.name%>"
+              class="basic_input"
+            />
+            <label class="basic_label">رقم التليفون</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              value="<%=hasError?oldInputs.clientData.phoneNumber:clientData.phoneNumber%>"
+              class="basic_input"
+            />
+            <label class="basic_label">رقم العضويه</label>
+            <input
+              type="text"
+              name="subscriperId"
+              value="<%=hasError?oldInputs.clientData.subscriperId:clientData.subscriperId%>"
+              class="basic_input"
+            />
+            <label class="basic_label">تاريخ بداية الاشتراك</label>
+            <input type="date" name="startDate" class="basic_input" />
+            <label class="basic_label">تاريخ نهاية الاشتراك</label>
+            <input type="date" name="endDate" class="basic_input" />
+            <div class="fridays_count">
+              <label class="basic_label">عدم احتساب ايام الجمعه</label>
+              <input type="checkbox" name="fridaysCount" id="friCount" />
+            </div>
+            <label class="basic_label">مدة الاشتراك(بالايام)</label>
+            <input
+              type="number"
+              name="subscriptionPeriod"
+              class="basic_input"
+              value="<%=hasError?oldInputs.subscriptionPeriod:''%>"
+            />
+            <label class="basic_label">عدد الوجبات</label>
+            <input
+              type="number"
+              name="numberOfMeals"
+              class="basic_input"
+              value="<%=hasError?oldInputs.numberOfMeals:''%>"
+            />
+            <label class="basic_label">عدد الاسناكات</label>
+            <input
+              type="number"
+              name="numberOfSnacks"
+              class="basic_input"
+              value="<%=hasError?oldInputs.numberOfSnacks:''%>"
+            />
+            <label class="basic_label">كربوهيدرات</label>
+            <input
+              type="text"
+              name="carbohydrates"
+              class="basic_input"
+              value="<%=hasError?oldInputs.carbohydrates:''%>"
+            />
+            <label class="basic_label">البروتين</label>
+            <input
+              type="text"
+              name="protine"
+              class="basic_input"
+              value="<%=hasError?oldInputs.protine:''%>"
+            />
+            <label class="basic_label">ملاحظات</label>
+            <input
+              type="text"
+              name="notes"
+              class="basic_input"
+              value="<%=hasError?oldInputs.notes:''%>"
+            />
+            <label class="basic_label">سعر الاشتراك</label>
+            <input
+              type="number"
+              name="subscriptionPrice"
+              class="basic_input"
+              step="0.01"
+              value="<%=hasError?oldInputs.subscriptionPrice:''%>"
+            />
+            <input
+              type="hidden"
+              name="clientId"
+              value="<%=hasError?oldInputs.clientData._id:clientData._id%>"
+            />
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+            <button type="submit" class="form_btn">اشتراك</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script src="/js/designActions.js"></script>
+    <%-include('../includes/end.ejs')%>
+  </body>
+</html>

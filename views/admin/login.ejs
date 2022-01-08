@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <%-include('../includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <%-include('../includes/nav.ejs')%>
+    <main class="login">
+      <div class="flex-container">
+        <div class="right-content">
+          <h1>
+            <span class="bold-heading"> Easy Diet </span>
+            <span class="normal-heading"> Login </span>
+          </h1>
+        </div>
+        <div class="left-content">
+          <h1 class="heading-type">تسجيل الدخول</h1>
+          <form action="/admin/login" method="POST">
+            <!-- errors -->
+            <!-- <div class="errors-container">
+              <small class="error">خطأ فى اسم المستخدم</small>
+            </div> -->
+            <!-- errors -->
+            <div class="inpu-container">
+              <input
+                type="text"
+                name="userName"
+                placeholder="اسم المستخدم"
+                required
+                autocomplete="off"
+              />
+              <span class="bottom-border"></span>
+            </div>
+            <div class="inpu-container">
+              <input
+                type="password"
+                name="password"
+                placeholder="كلمة المرور"
+                required
+              />
+              <span class="bottom-border"></span>
+            </div>
+            <div class="btn-container">
+              <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+              <button type="submit">دخول</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <%-include('../includes/end.ejs')%>
+  </body>
+</html>
